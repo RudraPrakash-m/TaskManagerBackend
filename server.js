@@ -10,7 +10,10 @@ const app = express()
 connectDB()
 
 app.use(express.json())
-app.use(cors({ origin: "*" }))
+app.use(cors({
+  origin: "https://workeasym.netlify.app",
+  credentials: true
+}));
 
 
 app.use("/api", public_route)
