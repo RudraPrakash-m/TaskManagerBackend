@@ -7,13 +7,24 @@ const register = async (req, res) => {
   const { email } = req.body;
 
   try {
+    const existingUser = await USERMODEL.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: "User already exists with this email" });
+    }
+
     const otp = Math.floor(1000 + Math.random() * 9000);
 
-    await sendEmail(email, "OTP Verification", `<p>Your OTP is: <strong>${otp}</strong></p>`);
+    await sendEmail(
+      email,
+      "TaskManager OTP Verification",
+      `<p>Hello,</p>
+       <p>Your OTP for TaskManager registration is: <strong>${otp}</strong></p>
+       <p>This OTP will expire in 5 minutes. Do not share it with anyone.</p>`
+    );
 
     res.status(200).json({ message: "OTP sent successfully", otp });
   } catch (error) {
-    console.error(error);
+    console.error("Error in register:", error);
     res.status(500).json({ message: "Failed to send OTP email" });
   }
 };

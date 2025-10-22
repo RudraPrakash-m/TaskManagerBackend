@@ -12,7 +12,7 @@ connectDB()
 app.use(express.json())
 
 app.use(cors({
-  origin: ["https://workeasym.netlify.app", "http://localhost:5173"],
+  origin: ["https://workeasym.netlify.app"],
   credentials: true
 }));
 
