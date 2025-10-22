@@ -5,7 +5,8 @@ const addTaskSchema = new mongoose.Schema({
     description: String,
     dueDate: String,
     priority: String,
-    userId: String
+    userId: String,
+    completed:Boolean
 })
 
 module.exports = addTaskSchema
