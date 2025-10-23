@@ -16,7 +16,7 @@ const sendEmail = async (to, subject, html) => {
   try {
     await sgMail.send({
       to, // recipient
-      from: "rudraprakash6458@gmail.com", // verified sender
+      from: "team.quantumgroup@gmail.com", // verified sender
       subject,
       html,
     });
